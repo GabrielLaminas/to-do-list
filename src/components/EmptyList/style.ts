@@ -2,11 +2,10 @@ import { StyleSheet } from "react-native";
 
 const style = StyleSheet.create({
   viewContainer: {
-    width: '100%',
     paddingHorizontal: 20,
     paddingVertical: 48,
-    borderWidth: 1,
     borderTopColor: '#333333',
+    borderTopWidth: 1
   },
   imageContainer: {
     marginBottom: 16,
