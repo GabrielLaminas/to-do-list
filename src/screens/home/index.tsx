@@ -1,5 +1,5 @@
 import { View, Text, Image, TextInput, TouchableOpacity } from "react-native";
-import React from "react";
+import { useRef } from "react";
 import { CirclePlus } from 'lucide-react-native';
 import style from "./style";
 
@@ -8,30 +8,34 @@ const logo = require("../../../assets/logo-todo.png");
 function Home(){
   return (
     <View style={style.container}>
-      <View>
+      <View style={style.imageContainer}>
         <Image source={logo} resizeMode="cover" width={111} height={32} />
       </View>
 
-      <View>
-        <TextInput />
+      <View style={style.inputContainer}>
+        <TextInput 
+          style={style.input}
+          placeholder="Adicione uma nova tarefa" 
+          placeholderTextColor="#808080"
+        />
 
-        <TouchableOpacity>
-          <CirclePlus color="#F2F2F2" size={16} />
+        <TouchableOpacity style={style.addButton}>
+          <CirclePlus color="#F2F2F2" size={18} />
         </TouchableOpacity>
       </View>
 
-      <View>
+      <View style={[style.infoContainer, {marginBottom: 20, width: "100%"}]}>
         <TouchableOpacity>
-          <View>
-            <Text>Criadas</Text>
-            <Text>0</Text>
+          <View style={style.infoContainer}>
+            <Text style={[style.textInfo, {color: "#4EA8DE"}]}>Criadas</Text>
+            <Text style={style.textCounter}>0</Text>
           </View>
         </TouchableOpacity>
 
         <TouchableOpacity>
-          <View>
-            <Text>Concluídas</Text>
-            <Text>0</Text>
+          <View style={style.infoContainer}>
+            <Text style={[style.textInfo, {color: "#8284FA"}]}>Concluídas</Text>
+            <Text style={style.textCounter}>0</Text>
           </View>
         </TouchableOpacity>
       </View>
