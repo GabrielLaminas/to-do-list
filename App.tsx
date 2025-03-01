@@ -1,5 +1,4 @@
 import { StatusBar } from 'expo-status-bar';
-import { View, Text } from 'react-native';
 import { useFonts } from "expo-font"
 import Home from './src/screens/Home';
 

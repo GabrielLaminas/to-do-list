@@ -2,6 +2,7 @@ import { View, Text, Image, TextInput, TouchableOpacity } from "react-native";
 import { useRef } from "react";
 import { CirclePlus } from 'lucide-react-native';
 import style from "./style";
+import EmptyList from "../../components/EmptyList";
 
 const logo = require("../../../assets/logo-todo.png");
 

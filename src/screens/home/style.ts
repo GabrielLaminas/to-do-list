@@ -44,8 +44,6 @@ const style = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     gap: 8,
-    // borderWidth: 2,
-    // borderColor: 'red'
   },
   textInfo: {
     fontSize: 14,
