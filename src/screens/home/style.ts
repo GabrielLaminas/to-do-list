@@ -2,12 +2,12 @@ import { StyleSheet } from "react-native";
 
 const style = StyleSheet.create({
   container: {
+    paddingTop: 70,
     paddingHorizontal: 24,
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: "#1A1A1A",
-    // backgroundColor: "#FFF"
   },
   imageContainer: {
     marginBottom: 40
@@ -59,6 +59,9 @@ const style = StyleSheet.create({
     fontFamily: 'inter-bold',
     fontWeight: 'bold',
     borderRadius: 999
+  },
+  list: {
+    width: "100%"
   }
 });
 
