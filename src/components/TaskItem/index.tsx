@@ -3,7 +3,10 @@ import { Check, Trash2 } from "lucide-react-native";
 import TasksProps from "../../types/task";
 import style from "./style";
 
-function TaskItem({ data }: { data: TasksProps}) {
+function TaskItem({ data, onRemove }: { 
+  data: TasksProps, 
+  onRemove: (id: number) => void 
+}) {
   return (
     <View style={
       [
@@ -29,7 +32,7 @@ function TaskItem({ data }: { data: TasksProps}) {
         {data.task}
       </Text>
 
-      <TouchableOpacity style={style.removeButton}>
+      <TouchableOpacity style={style.removeButton} onPress={() => onRemove(data.id)}>
         <Trash2 color="#808080" />      
       </TouchableOpacity>
     </View>
