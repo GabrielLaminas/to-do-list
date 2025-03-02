@@ -18,20 +18,24 @@ function Home(){
     if(!task) return;
 
     setTasks((prevState) => [
-      ...prevState, 
       { 
         id: tasks.length + 1, 
         task: task,
         checked: false
-      }
+      },
+      ...prevState, 
     ]);
     setTaskText('');
     Keyboard.dismiss();
   }
 
+  function handleRemoveTask(taskId: number){
+    setTasks((prevState) => prevState.filter(task => task.id !== taskId))
+  }
+
   function renderItem({ item }: { item: TasksProps}){
     return (
-      <TaskItem data={item} />
+      <TaskItem data={item} onRemove={handleRemoveTask} />
     )
   }
 
