@@ -29,13 +29,32 @@ function Home(){
     Keyboard.dismiss();
   }
 
+  function handlleCheckTask(task: TasksProps){
+    if(!task.checked){
+      task.checked = true
+    } else {
+      task.checked = false
+    }
+
+    setTasks((prevState) => prevState.map(prev => {
+      if(prev.id === task.id){
+        prev.checked = task.checked
+      }
+      return prev
+    }));
+  }
+
   function handleRemoveTask(taskId: number){
     setTasks((prevState) => prevState.filter(task => task.id !== taskId))
   }
 
   function renderItem({ item }: { item: TasksProps}){
     return (
-      <TaskItem data={item} onRemove={handleRemoveTask} />
+      <TaskItem 
+        data={item} 
+        onCheck={handlleCheckTask}
+        onRemove={handleRemoveTask} 
+      />
     )
   }
 

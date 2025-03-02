@@ -3,8 +3,9 @@ import { Check, Trash2 } from "lucide-react-native";
 import TasksProps from "../../types/task";
 import style from "./style";
 
-function TaskItem({ data, onRemove }: { 
+function TaskItem({ data, onCheck, onRemove }: { 
   data: TasksProps, 
+  onCheck: (data: TasksProps) => void,
   onRemove: (id: number) => void 
 }) {
   return (
@@ -13,7 +14,7 @@ function TaskItem({ data, onRemove }: {
         style.viewContainer, 
         data.checked ? { borderColor: "#262626", elevation: 0, shadowColor: "transparent", shadowOpacity: 0 } : "" ]
       }>
-      <TouchableOpacity style={style.buttonChecked}>
+      <TouchableOpacity style={style.buttonChecked} onPress={() => onCheck(data)}>
         {
           data.checked 
           ? (
