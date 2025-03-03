@@ -19,7 +19,7 @@ function Home(){
 
     setTasks((prevState) => [
       { 
-        id: tasks.length + 1, 
+        id: tasks.length > 0 ? tasks[0].id + 1 : 1, 
         task: taskText,
         checked: false
       },
