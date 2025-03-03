@@ -67,7 +67,7 @@ function Home(){
   return (
     <View style={style.container}>
       <View style={style.imageContainer}>
-        <Image source={logo} resizeMode="cover" width={111} height={32} />
+        <Image source={logo} resizeMode="cover" width={111} height={32} alt="todo logo" />
       </View>
 
       <View style={style.inputContainer}>
