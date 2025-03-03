@@ -14,13 +14,13 @@ function Home(){
   const [taskText, setTaskText] = useState('');
   const [tasks, setTasks] = useState<TasksProps[]>([]);
 
-  function handleAddTask(task: string) {
-    if(!task) return;
+  function handleAddTask(taskText: string) {
+    if(!taskText) return;
 
     setTasks((prevState) => [
       { 
-        id: tasks.length + 1, 
-        task: task,
+        id: tasks.length > 0 ? tasks[0].id + 1 : 1, 
+        task: taskText,
         checked: false
       },
       ...prevState, 
@@ -30,25 +30,19 @@ function Home(){
   }
 
   function handlleCheckTask(task: TasksProps){
-    if(!task.checked){
-      task.checked = true
-    } else {
-      task.checked = false
-    }
-
     setTasks((prevState) => prevState.map(prev => {
       if(prev.id === task.id){
-        prev.checked = task.checked
+        prev.checked = !task.checked
       }
       return prev
     }));
   }
 
   function handleRemoveTask(taskId: number){
-    setTasks((prevState) => prevState.filter(task => task.id !== taskId))
+    setTasks((prevState) => prevState.filter(task => task.id !== taskId));
   }
 
-  function renderItem({ item }: { item: TasksProps}){
+  function renderItem({ item }: { item: TasksProps }){
     return (
       <TaskItem 
         data={item} 
