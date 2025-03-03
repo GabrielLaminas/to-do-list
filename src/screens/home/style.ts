@@ -21,13 +21,13 @@ const style = StyleSheet.create({
   },
   input: {
     flex: 1,
+    height: 54,
     padding: 16,
     fontSize: 16,
     fontFamily: 'inter-regular',
     fontWeight: 400,
     color: "#F2F2F2",
     backgroundColor: "#262626",
-    borderColor: "#0D0D0D",
     borderWidth: 1,
     borderRadius: 6
   },

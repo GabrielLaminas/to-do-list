@@ -1,7 +1,7 @@
 import { 
   View, Text, Image, TextInput, TouchableOpacity, FlatList, Keyboard, Alert 
 } from "react-native";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { CirclePlus } from 'lucide-react-native';
 import EmptyList from "../../components/EmptyList";
 import TaskItem from "../../components/TaskItem";
@@ -13,6 +13,7 @@ const logo = require("../../../assets/logo-todo.png");
 function Home(){
   const [taskText, setTaskText] = useState('');
   const [tasks, setTasks] = useState<TasksProps[]>([]);
+  const [focus, setFocus] = useState(false);
 
   function handleAddTask(taskText: string) {
     if(!taskText) return;
@@ -26,6 +27,7 @@ function Home(){
       ...prevState, 
     ]);
     setTaskText('');
+    setFocus(false);
     Keyboard.dismiss();
   }
 
@@ -70,9 +72,13 @@ function Home(){
 
       <View style={style.inputContainer}>
         <TextInput 
-          style={style.input}
+          style={[style.input, focus ? { borderColor: "#5E60CE" } : { borderColor: "#0D0D0D" }]}
           value={taskText}
           onChangeText={(text) => setTaskText(text)}
+          onSubmitEditing={() => handleAddTask(taskText)}
+          onFocus={() => setFocus(true)}  
+          onBlur={() => setFocus(false)}
+          returnKeyType="go"
           placeholder="Adicione uma nova tarefa" 
           placeholderTextColor="#808080"
         />
