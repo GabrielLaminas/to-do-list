@@ -1,5 +1,5 @@
 import { 
-  View, Text, Image, TextInput, TouchableOpacity, FlatList, Keyboard 
+  View, Text, Image, TextInput, TouchableOpacity, FlatList, Keyboard, Alert 
 } from "react-native";
 import { useRef, useState } from "react";
 import { CirclePlus } from 'lucide-react-native';
@@ -39,7 +39,17 @@ function Home(){
   }
 
   function handleRemoveTask(taskId: number){
-    setTasks((prevState) => prevState.filter(task => task.id !== taskId));
+    Alert.alert("Excluir tarefa", "Tem certeza que deseja excluir está tarefa?", [
+      {
+        text: "Cancelar",
+        style: "cancel"
+      },
+      {
+        text: "Sim",
+        style: "destructive",
+        onPress: () => setTasks((prevState) => prevState.filter(task => task.id !== taskId))
+      }
+    ]);
   }
 
   function renderItem({ item }: { item: TasksProps }){
