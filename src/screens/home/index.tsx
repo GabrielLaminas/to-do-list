@@ -73,25 +73,21 @@ function Home(){
       </View>
 
       <View style={[style.infoContainer, {marginBottom: 20, width: "100%"}]}>
-        <TouchableOpacity>
-          <View style={style.infoContainer}>
-            <Text style={[style.textInfo, {color: "#4EA8DE"}]}>Criadas</Text>
-            <Text style={style.textCounter}>{tasks.length}</Text>
-          </View>
-        </TouchableOpacity>
+        <View style={style.infoContainer}>
+          <Text style={[style.textInfo, {color: "#4EA8DE"}]}>Criadas</Text>
+          <Text style={style.textCounter}>{tasks.length}</Text>
+        </View>
 
-        <TouchableOpacity>
-          <View style={style.infoContainer}>
-            <Text style={[style.textInfo, {color: "#8284FA"}]}>Concluídas</Text>
-            <Text style={style.textCounter}>0</Text>
-          </View>
-        </TouchableOpacity>
+        <View style={style.infoContainer}>
+          <Text style={[style.textInfo, {color: "#8284FA"}]}>Concluídas</Text>
+          <Text style={style.textCounter}>{tasks.filter(task => task.checked).length}</Text>
+        </View>
       </View>
 
       <FlatList 
         style={style.list}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{gap: 8}}
+        contentContainerStyle={{gap: 8, paddingBottom: 20}}
         data={tasks}
         keyExtractor={(item) => String(item.id)}
         renderItem={renderItem}
