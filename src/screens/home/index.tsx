@@ -1,7 +1,14 @@
 import { 
   View, Text, Image, TextInput, TouchableOpacity, FlatList, Keyboard, Alert 
 } from "react-native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+import Animated, { 
+  Easing, useSharedValue, useAnimatedStyle, 
+  withTiming, withSequence, interpolate,
+  FadeInLeft, FadeInRight
+} from "react-native-reanimated";
+
 import { CirclePlus } from 'lucide-react-native';
 import EmptyList from "../../components/EmptyList";
 import TaskItem from "../../components/TaskItem";
@@ -14,6 +21,9 @@ function Home(){
   const [taskText, setTaskText] = useState('');
   const [tasks, setTasks] = useState<TasksProps[]>([]);
   const [focus, setFocus] = useState(false);
+
+  const header = useSharedValue(-120);
+  const input = useSharedValue(0);
 
   function handleAddTask(taskText: string) {
     if(!taskText) return;
@@ -64,13 +74,36 @@ function Home(){
     )
   }
 
+  const animatedHeader = useAnimatedStyle(() => {
+    return {
+      transform: [ { translateY: header.value } ]
+    } 
+  });
+
+  const animatedInput = useAnimatedStyle(() => {
+    return {
+      transform: [ { translateY: interpolate(input.value, [0, 0.5, 1], [-50, 25, 0])  } ],
+      opacity: interpolate(input.value, [0, 1], [0, 1]),
+    } 
+  });
+
+  useEffect(() => {
+    header.value = withSequence(
+      withTiming(header.value, { duration: 400 }), 
+      withTiming(35, { duration: 600 }), 
+      withTiming(0, { duration: 800 })
+    );
+
+    input.value = withTiming(1, { duration: 2000, easing: Easing.ease });
+  }, []);
+
   return (
     <View style={style.container}>
-      <View style={style.imageContainer}>
+      <Animated.View style={[style.imageContainer, animatedHeader]}>
         <Image source={logo} resizeMode="cover" width={111} height={32} alt="todo logo" />
-      </View>
+      </Animated.View>
 
-      <View style={style.inputContainer}>
+      <Animated.View style={[style.inputContainer, animatedInput]}>
         <TextInput 
           style={[style.input, focus ? { borderColor: "#5E60CE" } : { borderColor: "#0D0D0D" }]}
           value={taskText}
@@ -86,18 +119,18 @@ function Home(){
         <TouchableOpacity style={style.addButton} onPress={() => handleAddTask(taskText)}>
           <CirclePlus color="#F2F2F2" size={18} />
         </TouchableOpacity>
-      </View>
+      </Animated.View>
 
       <View style={[style.infoContainer, {marginBottom: 20, width: "100%"}]}>
-        <View style={style.infoContainer}>
+        <Animated.View style={style.infoContainer} entering={FadeInLeft.duration(1000).easing(Easing.ease)}>
           <Text style={[style.textInfo, {color: "#4EA8DE"}]}>Criadas</Text>
           <Text style={style.textCounter}>{tasks.length}</Text>
-        </View>
+        </Animated.View>
 
-        <View style={style.infoContainer}>
+        <Animated.View style={style.infoContainer} entering={FadeInRight.duration(1000).easing(Easing.ease)}>
           <Text style={[style.textInfo, {color: "#8284FA"}]}>Concluídas</Text>
           <Text style={style.textCounter}>{tasks.filter(task => task.checked).length}</Text>
-        </View>
+        </Animated.View>
       </View>
 
       <FlatList 

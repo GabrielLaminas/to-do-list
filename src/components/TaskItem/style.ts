@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native";
 
 const style = StyleSheet.create({
   viewContainer: {
+    flexGrow: 1,
     flex: 1,
     paddingVertical: 12,
     paddingLeft: 12,
@@ -44,7 +45,6 @@ const style = StyleSheet.create({
   },
   textTask: {
     flex: 2,
-    color: '#F2F2F2',
     fontSize: 14,
     lineHeight: 21,
   },
