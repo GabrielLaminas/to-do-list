@@ -9,7 +9,7 @@ function EmptyList() {
       <View style={style.imageContainer}>
         <Image 
           source={clipboard} resizeMode="cover" 
-          width={56} height={56}
+          width={64} height={64}
         />
       </View>
 
