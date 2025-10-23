@@ -4,11 +4,11 @@
     "slug": "to-do-list",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/rocket.png",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "dark",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/rocket.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#1A1A1A"
     },
@@ -17,12 +17,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/rocket.png",
+        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#1A1A1A"
       }
     },
     "web": {
-      "favicon": "./assets/rocket.png"
+      "favicon": "./assets/favicon.png"
     },
     "plugins": [
       [
