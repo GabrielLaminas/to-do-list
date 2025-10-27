@@ -19,7 +19,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#1A1A1A"
-      }
+      },
+      "package": "com.gabriellaminas.todolist"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -28,9 +29,18 @@
       [
         "expo-font",
         {
-          "fonts": ["path/to/file.ttf"]
+          "fonts": [
+            "./assets/fonts/inter-regular.ttf", 
+            "./assets/fonts/inter-bold.ttf"
+          ]
         }
-      ]
-    ]
+      ],
+      "expo-asset"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "b7214555-04a2-433f-b11f-bf4691820580"
+      }
+    }
   }
 }
